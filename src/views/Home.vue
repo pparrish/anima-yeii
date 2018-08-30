@@ -3,7 +3,7 @@
         <div class="hero is-primary is-fullheight">
             <div class="hero-body ">
                 <div class="container has-text-centered">
-                <h1 class="title">Anima-Yeii</h1>
+                <h1 class="title is-1">Anima-Yeii</h1>
                 <p class="subtitle">La mejor forma de jugar a <a href="http://www.edgeent.com/libros/coleccion/anima_beyond_fantasy">Anima: Beyond Fantasy</a> </p>
 
                 <div class="level">
