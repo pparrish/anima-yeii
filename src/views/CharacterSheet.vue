@@ -10,7 +10,10 @@
         </section>
 
         <section class="section">
-            <basic-data-form class="container" @submit="changeStep" v-show="step === 1"></basic-data-form>
+            <div class="container">
+                <basic-data-form  @submit="changeStep" v-show="step === 1"></basic-data-form>
+                <characteristics-form ></characteristics-form>
+            </div>
         </section>
 
 
@@ -22,9 +25,10 @@
 
 <script>
 import BasicDataForm from "../components/BasicDataForm";
+import CharacteristicsForm from "../components/characteristicsForm";
 export default {
   name: "CharacterDetails",
-  components: { BasicDataForm },
+  components: { CharacteristicsForm, BasicDataForm },
   data() {
     return {
       step: 1
