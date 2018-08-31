@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import GenerationCards from "./GenerationCards";
+    import GenerationCards from "./GenerationCards"
 export default {
   name: "characteristics-form",
   data: function() {
@@ -24,37 +24,32 @@ export default {
           type: "1",
           title: "Al azar con ventaja.",
           tag: "recomendado",
-          description:
-            "Se te darán 8 números al azar del 4 al 10 con la seguridad de uno de ellos siempre será 9. "
+          description: "Se te darán 8 números al azar del 4 al 10 con la seguridad de uno de ellos siempre será 9. "
         },
         {
           type: "2",
           title: "Al azar con riesgo.",
           tag: "Cifras bajas",
-          description:
-            "Se obtiene con 8 pares de números del 1 al 10 de los cuales se elije solo el mayor. Corres el riesgo de obtener vaores muy bajos."
+          description: "Se obtiene con 8 pares de números del 1 al 10 de los cuales se elije solo el mayor. Corres el riesgo de obtener vaores muy bajos."
         },
         {
           type: "3",
           title: "Completamente al azar.",
           tag: "Para NPC´s",
-          description:
-            "8 del 1 al 10, completamente al azar. Ideal para los personajes comunes y corrientes"
+          description: "8 del 1 al 10, completamente al azar. Ideal para los personajes comunes y corrientes"
         },
         {
           type: "5",
           title: "Puntos al azar.",
           tag: "De 7 a 70",
-          description:
-            "Se obtiene de la suma de 7 números del 1 al 10 y después puedes repartir esos puntos como gustes. "
+          description: "Se obtiene de la suma de 7 números del 1 al 10 y después puedes repartir esos puntos como gustes. "
         },
         {
           type: "6",
           title: "Por puntos.",
           tag: "Libre",
-          description:
-            "Eliges la cantidad de puntos a repartir, por defecto son 60. Adicionalmente puedes elegir si ciertos valores cuestan más de un punto"
-        }
+          description: "Eliges la cantidad de puntos a repartir, por defecto son 60. Adicionalmente puedes elegir si ciertos valores cuestan más de un punto"
+        },
       ],
       generation: 0
     };
@@ -65,7 +60,8 @@ export default {
     }
   },
   components: { GenerationCards },
-  methods: {}
+  methods: {
+  },
 };
 </script>
 

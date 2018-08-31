@@ -3,7 +3,7 @@
         <h2 class="title is-4">Datos básicos</h2>
         <p class="subtitle">Fundamentales para la identidad {{nameToShow}}.</p>
 
-        <form @submit.prevent="onSubmit">
+        <form @submit.prevent="onSubmit" class="box">
             <div class="field">
             <label class="label" >Nombre.</label>
             <div class="control">
@@ -30,7 +30,7 @@
             <p class="help is-warning" v-show="age === '' ">Deja en blanco para indicar que se desconoce la edad del personaje.</p>
         </div>
 
-            <div class="field">
+            <div class="field ">
             <label class="label">Raza.</label>
             <div class="control">
                 <div class="select">
