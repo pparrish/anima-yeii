@@ -1,23 +1,11 @@
 <template>
-    <div class="container">
+    <div class="section">
 
-        <section class="section">
-            <div class="container">
-                <h1 class="title is-4">
-                    Creación de personajes.
-                </h1>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <basic-data-form  @submit="changeStep" v-show="step === 1"></basic-data-form>
-                <characteristics-form ></characteristics-form>
-            </div>
-        </section>
-
-
-
+        <div class="container">
+            <h1 class="title is-3">Creación de personajes.</h1>
+            <basic-data-form  @submit="changeStep" v-show="step === 1"></basic-data-form>
+            <characteristics-form ></characteristics-form>
+        </div>
 
     </div>
 

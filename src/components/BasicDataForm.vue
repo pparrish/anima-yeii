@@ -1,11 +1,10 @@
 <template>
     <div>
-
-        <h2 class="title is-5">Datos básicos</h2>
+        <h2 class="title is-4">Datos básicos</h2>
         <p class="subtitle">Fundamentales para la identidad {{nameToShow}}.</p>
 
-    <form class="container" @submit.prevent="onSubmit">
-        <div class="field">
+        <form @submit.prevent="onSubmit">
+            <div class="field">
             <label class="label" >Nombre.</label>
             <div class="control">
                 <input type="text" class="input" placeholder="Loremín" required v-model="name">
@@ -14,7 +13,7 @@
             <p class="help is-danger" v-show="errors.includes('no-name')">Tu personaje debe tener un nombre.</p>
         </div>
 
-        <div class="field">
+            <div class="field">
             <label class="label">Sexo.</label>
             <div class="buttons has-addons control">
                 <div class="button" :class="{'is-success': sex === 'hombre' ,'is-selected': sex === 'hombre' }" @click="sexSelected('hombre')">Hombre.</div>
@@ -23,7 +22,7 @@
             <p class="help is-danger buttons-help" v-show="errors.includes('sex-not-choice')">Debes elegir el sexo de tu personaje.</p>
         </div>
 
-        <div class="field">
+            <div class="field">
             <label class="label">Edad.</label>
             <div class="control ">
                 <input type="number" class="input is-small" min="1" placeholder="???" v-model.number="age"/>
@@ -31,7 +30,7 @@
             <p class="help is-warning" v-show="age === '' ">Deja en blanco para indicar que se desconoce la edad del personaje.</p>
         </div>
 
-        <div class="field">
+            <div class="field">
             <label class="label">Raza.</label>
             <div class="control">
                 <div class="select">
@@ -43,13 +42,14 @@
                 </div>
             </div>
         </div>
-        <div class="container is-primary">
-            <div class="level">
+
+            <div class="is-primary">
+                <div class="level">
                 <div class="level-item level-right ">
                     <input type="submit" class="button is-success" value="Características" />
                 </div>
             </div>
-        </div>
+            </div>
     </form>
 
     </div>
