@@ -5,6 +5,7 @@
 
       <router-view/>
 
+
       <footer class="footer">
           <div class="content has-text-centered">
               <p>Creado por <a href="#">Parrish.</a></p>
@@ -15,6 +16,7 @@
               </p>
           </div>
       </footer>
+
   </div>
 
 </template>

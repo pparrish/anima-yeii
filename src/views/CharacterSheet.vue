@@ -46,7 +46,8 @@
             </div>
 
             <basic-data-form  @submit="changeStep" v-show="step === 1"></basic-data-form>
-            <characteristics-form ></characteristics-form>
+            <characteristics-form v-show="step === 2"></characteristics-form>
+
         </div>
 
     </div>
