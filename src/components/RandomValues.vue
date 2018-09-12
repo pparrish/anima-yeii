@@ -14,7 +14,7 @@ export default {
   name: "random-values",
   props: {
     result: {
-      type: [],
+      type: Array,
       required: false
     },
     label: {
