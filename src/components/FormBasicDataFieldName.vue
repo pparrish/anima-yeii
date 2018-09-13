@@ -1,7 +1,6 @@
 <template>
-  <div class="field"
-       @click="focusInput()">
-    <label class="label">Nombre(s).</label>
+  <label class="field">
+    <div class="label">Nombre(s).</div>
     <div class="control">
       <input
           @input="handleInput($event.target.value)"
@@ -15,7 +14,7 @@
     <p class="help is-danger"
        v-for="(error, index) in info.errors"
        :key="index">{{ error.message }}.</p>
-  </div>
+  </label>
 </template>
 
 <script>
@@ -36,9 +35,6 @@ export default {
     };
   },
   methods: {
-    focusInput() {
-      this.$refs.input.focus();
-    },
     handleInput(name) {
       let formatedName = name;
       formatedName = this.cleanSpaces(formatedName);
