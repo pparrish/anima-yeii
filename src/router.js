@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import CharacterSheet from "@/views/CharacterSheet";
+import NewCharacter from "@/views/NewCharacter";
 
 Vue.use(Router);
 
@@ -15,9 +15,9 @@ export default new Router({
       component: Home
     },
     {
-      path: "/character-sheet",
-      name: "character sheet",
-      component: CharacterSheet
+      path: "/new-character",
+      name: "NewCharacter",
+      component: NewCharacter
     }
   ]
 });

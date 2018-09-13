@@ -8,7 +8,12 @@
 
                     <div class="level">
                         <div class="level-item ">
-                            <router-link to="character-sheet" class="button is-dark" id="link-to-chart">Empieza a Jugar!!</router-link>
+                          <router-link
+                              to="new-character"
+                              class="button is-dark"
+                              id="link-to-chart">
+                            Empieza a Jugar!!
+                          </router-link>
                         </div>
                     </div>
                 </div>

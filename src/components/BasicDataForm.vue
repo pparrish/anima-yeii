@@ -1,17 +1,18 @@
 <template>
-    <div>
-        <h2 class="title is-4">Datos básicos</h2>
-        <p class="subtitle">Fundamentales para la identidad {{nameToShow}}.</p>
-
-        <form @submit.prevent="onSubmit" class="box">
-            <div class="field">
+    <form @submit.prevent="onSubmit">
+        <fieldset class="field">
             <label class="label" >Nombre.</label>
             <div class="control">
-                <input type="text" class="input" placeholder="Loremín" required v-model="name">
+                <input type="text"
+                       :value="value.name"
+                       class="input"
+                       placeholder="Loremín"
+                       @input="test($event.target.value, 'name')"
+                       required>
             </div>
             <p class="help is-success">Puedes colocar apellidos si asi lo deseas.</p>
             <p class="help is-danger" v-show="errors.includes('no-name')">Tu personaje debe tener un nombre.</p>
-        </div>
+        </fieldset>
 
             <div class="field">
             <label class="label">Sexo.</label>
@@ -50,14 +51,18 @@
                 </div>
             </div>
             </div>
-    </form>
 
-    </div>
+    </form>
 </template>
 
 <script>
 export default {
-  name: "basic-data-form",
+  name: "BasicDataForm",
+  props: {
+    value: {
+      type: Object
+    }
+  },
   data() {
     return {
       name: "",
@@ -114,6 +119,10 @@ export default {
         let index = this.errors.findIndex(error => error === "no-name");
         this.errors.splice(index, 1);
       }
+    },
+    test(data) {
+      this.name = data;
+      this.$emit("input", this.$data);
     }
   },
   watch: {
