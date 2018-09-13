@@ -133,8 +133,8 @@ export default {
       }
       this.setNoNameError();
     },
-    sex() {
-      this.setSexError();
+    sex(sex) {
+      this.setSexError(sex);
     }
   }
 };
