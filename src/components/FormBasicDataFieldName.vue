@@ -40,8 +40,10 @@ export default {
       this.$refs.input.focus();
     },
     handleInput(name) {
-      let formatedName = this.capitalizeWords(name);
-
+      let formatedName = name;
+      formatedName = this.cleanSpaces(formatedName);
+      formatedName = this.capitalizeWords(formatedName);
+      formatedName = formatedName === " " ? "" : formatedName;
       if (formatedName === "") {
         this.setInfo("errors", "NAME_EMPTY", "El nombre no puede quedar vacio");
       } else {
@@ -52,7 +54,8 @@ export default {
       this.$emit("input", formatedName);
     },
     setInfo(type, name, message) {
-      this.info[type].push({ name: name, message: message });
+      if (this.info[type].findIndex(aInfo => aInfo.name === name) === -1)
+        this.info[type].push({ name: name, message: message });
     },
     clearInfo(type, name) {
       let index = this.info[type].findIndex(aInfo => aInfo.name === name);
@@ -60,6 +63,9 @@ export default {
     },
     capitalizeWords(name) {
       return name.replace(/\b(\w)/g, c => c.toUpperCase());
+    },
+    cleanSpaces(name) {
+      return name.replace(/\s+/g, () => " ").replace(/^\s/, () => "");
     }
   }
 };
