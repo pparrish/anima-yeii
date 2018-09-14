@@ -1,13 +1,13 @@
 <template>
   <form @submit.prevent="$emit('finish')">
 
-    <form-basic-data-field-name v-model="basicData.name"></form-basic-data-field-name>
+    <form-basic-data-field-name v-model="value.name"></form-basic-data-field-name>
     <!-- TODO handle to error -->
-    <form-basic-data-field-sex v-model="basicData.sex"></form-basic-data-field-sex>
+    <form-basic-data-field-sex v-model="value.sex"></form-basic-data-field-sex>
 
-    <form-basic-data-field-age v-model="basicData.age"></form-basic-data-field-age>
+    <form-basic-data-field-age v-model="value.age"></form-basic-data-field-age>
 
-    <form-basic-data-field-race v-model="basicData.race"></form-basic-data-field-race>
+    <form-basic-data-field-race v-model="value.race"></form-basic-data-field-race>
 
     <div class="field">
       <div class="control">
@@ -35,20 +35,20 @@ export default {
     FormBasicDataFieldName
   },
   props: {
-    propName: {
+    value: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {
+          name: "",
+          sex: "",
+          age: NaN,
+          race: "humano"
+        };
+      }
     }
   },
   data() {
-    return {
-      basicData: {
-        name: "",
-        sex: "",
-        age: NaN,
-        race: "humano"
-      }
-    };
+    return {};
   }
 };
 </script>

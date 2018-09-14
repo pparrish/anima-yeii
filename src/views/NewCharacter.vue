@@ -19,7 +19,8 @@
         <h2 class="title is-2">{{steps[currentStep].title}}</h2>
         <p class="subtitle is-4">Fundamentales para la identidad {{ nameToShow }}.</p>
 
-        <form-basic-data v-model="character.basicData"></form-basic-data>
+        <form-basic-data v-model="character.basicData"
+                         @finish="nexStep"></form-basic-data>
 
       </div>
     </section>
@@ -49,7 +50,12 @@ export default {
         }
       ],
       character: {
-        basicData: {}
+        basicData: {
+          name: "",
+          sex: "",
+          age: NaN,
+          race: "humano"
+        }
       },
       nameToShow: "del personaje"
     };
