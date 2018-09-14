@@ -32,4 +32,7 @@ export default {
 </script>
 
 <style scoped>
+input[type="number"] {
+  width: 5rem;
+}
 </style>

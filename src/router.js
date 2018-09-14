@@ -18,6 +18,10 @@ export default new Router({
       path: "/new-character",
       name: "NewCharacter",
       component: NewCharacter
+    },
+    {
+      path: "*",
+      redirect: "/"
     }
   ]
 });

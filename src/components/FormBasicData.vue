@@ -7,7 +7,15 @@
 
     <form-basic-data-field-age v-model="basicData.age"></form-basic-data-field-age>
 
-    <form-basic-data-field-race></form-basic-data-field-race>
+    <form-basic-data-field-race v-model="basicData.race"></form-basic-data-field-race>
+
+    <div class="field">
+      <div class="control">
+        <input type="submit"
+               class="button is-pulled-right is-link"
+               value="siguiente Paso!">
+      </div>
+    </div>
 
   </form>
 </template>
@@ -26,12 +34,19 @@ export default {
     FormBasicDataFieldSex,
     FormBasicDataFieldName
   },
+  props: {
+    propName: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       basicData: {
         name: "",
         sex: "",
-        age: NaN
+        age: NaN,
+        race: "humano"
       }
     };
   }
