@@ -1,5 +1,5 @@
 <template>
-  <label class="field">
+  <label class="field block">
     <div class="label">Nombre(s).</div>
     <div class="control">
       <input

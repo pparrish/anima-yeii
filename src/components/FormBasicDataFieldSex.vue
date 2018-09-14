@@ -1,5 +1,5 @@
 <template>
-  <label class="field">
+  <div class="field">
     <div class="label">Sexo.</div>
     <div class="control">
       <div class="buttons has-addons is-centered">
@@ -15,8 +15,9 @@
         </button>
       </div>
     </div>
-    <p class="help is-danger">Debes elegir el sexo de tu personaje.</p>
-  </label>
+    <p class="help is-danger"
+       v-if="error">Debes elegir el sexo de tu personaje.</p>
+  </div>
 </template>
 
 <script>
