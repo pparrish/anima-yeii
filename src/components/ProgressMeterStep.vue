@@ -5,7 +5,7 @@
         :key="index"
         :text="step.text"
         :title="step.title"
-        :marker="index + '' "
+        :marker="parseInt(index) + 1  + '' "
         :class="{'is-active': index === active}"></progress-meter-step-segment>
   </ul>
 </template>

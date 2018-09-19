@@ -12,19 +12,22 @@
 
     <section class="section">
       <div class="container">
+
         <progress-meter-step
             :steps="steps"
             :active="currentStep"></progress-meter-step>
+
         <div class="content has-text-justified">
           <h2 class="title is-4">{{steps[currentStep].title}}</h2>
 
           <p class="is-size-6"
-             v-if="currentStep === 0">Con esto {{nameToShow}} podrá identificarse dentro del mundo.
+             v-if="currentStep === 0">Con esto {{ nameToShow }} podrá identificarse dentro del mundo.
           </p>
 
           <p class="is-size-6"
              v-if="currentStep === 1">
-            Después servirán para determinar el valor de cada una de las carácteristicas que va a tener {{nameToShow}}.
+            Después servirán para determinar el valor de cada una de las carácteristicas que va a tener {{ nameToShow
+            }}.
             Existen diversas formas de generar generar estos puntos y debes elegir una de ellas.
           </p>
         </div>
@@ -33,12 +36,20 @@
                          @finish="nexStep"
                          v-if="currentStep === 0"></form-basic-data>
 
+        <form-points-generation v-model="character.points"
+                                @finish="nexStep"
+                                v-if="currentStep === 1"></form-points-generation>
+
+        <form-characteristics v-model="character.characteristics"
+                              @finish="nexStep"
+                              v-if="currentStep === 2" ></form-characteristics>
+
         <hr>
         <hr>
         <hr>
         <hr>
 
-        <characteristics-form></characteristics-form>
+        <characteristics-form ></characteristics-form>
 
       </div>
     </section>
@@ -50,10 +61,18 @@
 import ProgressMeterStep from "../components/ProgressMeterStep";
 import FormBasicData from "../components/FormBasicData";
 import CharacteristicsForm from "../components/CharacteristicsForm";
+import FormCharacteristics from "../components/FormCharacteristics";
+import FormPointsGeneration from "../components/FormPointsGeneration";
 
 export default {
   name: "NewCharacter",
-  components: { CharacteristicsForm, FormBasicData, ProgressMeterStep },
+  components: {
+    FormCharacteristics,
+    CharacteristicsForm,
+    FormBasicData,
+    ProgressMeterStep,
+    FormPointsGeneration
+  },
   data() {
     return {
       currentStep: 1,
@@ -74,7 +93,22 @@ export default {
           sex: "",
           age: NaN,
           race: "humano"
+        },
+        characteristics: {
+          strength: 0,
+          dexterity: 0,
+          agility: 0,
+          physique: 0,
+          intelligence: 0,
+          might: 0,
+          will: 0,
+          perception: 0
         }
+      },
+      points: {
+        type: "",
+        values: [],
+        total: 0
       }
     };
   },

@@ -1,15 +1,6 @@
 <template>
     <div>
       <div class="content">
-        <h2>Características del personaje.</h2>
-        <p>Determinamos las capacidades básicas de <span class="is-capitalized">{{nameToShow}}</span>.</p>
-      </div>
-
-      <div class="container" v-if="characteristicsPoints.pointsToDistribute.length === 0">
-        <div class="content">
-            <h4>Gererar caracteristicas.</h4>
-            <p>Existen 6 métodos de generacion de carácteristicas cada uno con diferentes resultados en la generacion de tu personaje. La mayoria incorporan el factor de la suerte, que añade un punto divertido en la creacion puesto que nadie puede ser exactamente como le gustaría.</p>
-        </div>
 
         <div v-show="generation === '' ">
             <p class="title is-5">Elige un metodo de generacion</p>
