@@ -1,19 +1,20 @@
 <template>
   <form @submit.prevent="$emit('finish')">
 
-    <form-basic-data-field-name v-model="value.name"></form-basic-data-field-name>
+    <form-basic-data-field-name v-model="value.name"/>
     <!-- TODO handle to error -->
-    <form-basic-data-field-sex v-model="value.sex"></form-basic-data-field-sex>
+    <form-basic-data-field-sex v-model="value.sex"/>
 
-    <form-basic-data-field-age v-model="value.age"></form-basic-data-field-age>
+    <form-basic-data-field-age v-model="value.age"/>
 
-    <form-basic-data-field-race v-model="value.race"></form-basic-data-field-race>
+    <form-basic-data-field-race v-model="value.race"/>
 
     <div class="field">
       <div class="control">
-        <input type="submit"
-               class="button is-pulled-right is-link"
-               value="siguiente Paso!">
+        <input 
+          type="submit"
+          class="button is-pulled-right is-link"
+          value="siguiente Paso!">
       </div>
     </div>
 

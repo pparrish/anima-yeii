@@ -1,6 +1,6 @@
 <template>
   <li class="steps-segment">
-    <div class="steps-marker">{{marker}}</div>
+    <div class="steps-marker">{{ marker }}</div>
     <div class="steps-content">
       <p class="has-text-weight-bold is-size-5"> {{ title }}</p>
       <p class="is-size-7">{{ text }}</p>

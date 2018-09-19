@@ -1,21 +1,25 @@
 <template>
-    <div class="field is-grouped is-grouped-multiline">
-            <div class="control" v-for="(value, index) in result" :key="index">
-                <div class="tags has-addons">
-                    <span class="tag is-warning"><i class="fa fa-dice"></i>{{label}}</span>
-                    <span class="tag is-info">{{value}}</span>
-                </div>
-            </div>
+  <div class="field is-grouped is-grouped-multiline">
+    <div 
+      v-for="(value, index) in result" 
+      :key="index" 
+      class="control">
+      <div class="tags has-addons">
+        <span class="tag is-warning"><i class="fa fa-dice"/>{{ label }}</span>
+        <span class="tag is-info">{{ value }}</span>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "random-values",
+  name: "RandomValues",
   props: {
     result: {
       type: Array,
-      required: false
+      required: false,
+      default: () => []
     },
     label: {
       type: String,

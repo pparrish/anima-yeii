@@ -3,17 +3,18 @@
     <div class="label">Nombre(s).</div>
     <div class="control">
       <input
-          @input="handleInput($event.target.value)"
-          :value="value"
-          ref="input"
-          type="text"
-          class="input"
-          placeholder="Loremín"
-          required>
+        ref="input"
+        :value="value"
+        type="text"
+        class="input"
+        placeholder="Loremín"
+        required
+        @input="handleInput($event.target.value)">
     </div>
-    <p class="help is-danger"
-       v-for="(error, index) in info.errors"
-       :key="index">{{ error.message }}.</p>
+    <p 
+      v-for="(error, index) in info.errors"
+      :key="index"
+      class="help is-danger">{{ error.message }}.</p>
   </label>
 </template>
 

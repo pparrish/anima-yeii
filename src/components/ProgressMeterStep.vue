@@ -1,12 +1,12 @@
 <template>
   <ul class="steps">
     <progress-meter-step-segment
-        v-for="(step, index) in steps"
-        :key="index"
-        :text="step.text"
-        :title="step.title"
-        :marker="parseInt(index) + 1  + '' "
-        :class="{'is-active': index === active}"></progress-meter-step-segment>
+      v-for="(step, index) in steps"
+      :key="index"
+      :text="step.text"
+      :title="step.title"
+      :marker="parseInt(index) + 1 + '' "
+      :class="{'is-active': index === active}"/>
   </ul>
 </template>
 

@@ -1,12 +1,16 @@
 <template>
-    <div>
-        
-    </div>
+  <div>
+    <p>FormPointsGenerationSelector</p>
+    <accordion-selector />
+  </div>
 </template>
 
 <script>
+import AccordionSelector from "@/components/AccordionSelector";
+
 export default {
-  name: "FormPointsGenerationSelector"
+  name: "FormPointsGenerationSelector",
+  components: { AccordionSelector }
 };
 </script>
 

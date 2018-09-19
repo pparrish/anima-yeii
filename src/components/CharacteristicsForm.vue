@@ -1,58 +1,85 @@
 <template>
-    <div>
-      <div class="content">
+  <div>
+    <div class="content">
 
-        <div v-show="generation === '' ">
-            <p class="title is-5">Elige un metodo de generacion</p>
-            <generation-cards v-for="(generationCard, index) in generationCards" :card="generationCard" @selected="setGenetationType" @toggled="closeGenerationCards" :key="index" :ref="'generationCards'"></generation-cards>
-        </div>
-
-        <div v-if="generation !== '' " class="card has-background-light">
-            <div class="card-header" v-if="generation !== 'POINTS' ">
-                <p class="card-header-title">
-                    Resultados.
-                </p>
-            </div>
-            <div  v-if="generation !== 'POINTS' " class="card-content has-background-white ">
-                <random-values :result="generators[generation].values" label="D10"></random-values>
-                <div v-if="generation === 'POINTS_RANDOM' " class="message is-info">
-                    <div class="message-body">
-                        Total: {{ generators['POINTS_RANDOM'].values.reduce( (a,acum ) => a+acum ,0)  }}
-                    </div>
-                </div>
-            </div>
-            <div v-else class="card-content has-background-white ">
-                <div class="field">
-                    <label class="label">Cantidad de puntos.</label>
-                    <div class="control ">
-                        <input type="number" class="input is-small" min="1" placeholder="???"
-                               v-model.number="generators['POINTS'].values[0]"/>
-                    </div>
-                </div>
-            </div>
-            <footer class="card-footer ">
-                        <a class="card-footer-item button is-link is-radiusless" @click=" generation = '' ">
-                            Escoger Otro método
-                        </a>
-                        <a class="card-footer-item button is-success is-radiusless " @click="generationIsSelected">
-                            Continuar.
-                        </a>
-            </footer>
-        </div>
+      <div v-show="generation === '' ">
+        <p class="title is-5">Elige un metodo de generacion</p>
+        <generation-cards 
+          v-for="(generationCard, index) in generationCards" 
+          :card="generationCard" 
+          :key="index" 
+          :ref="'generationCards'" 
+          @selected="setGenetationType" 
+          @toggled="closeGenerationCards"/>
       </div>
 
-      <pre>
-{{characteristicsPoints}}
-      </pre>
-
+      <div 
+        v-if="generation !== '' " 
+        class="card has-background-light">
+        <div 
+          v-if="generation !== 'POINTS' " 
+          class="card-header">
+          <p class="card-header-title">
+            Resultados.
+          </p>
+        </div>
+        <div 
+          v-if="generation !== 'POINTS' " 
+          class="card-content has-background-white ">
+          <random-values 
+            :result="generators[generation].values" 
+            label="D10"/>
+          <div 
+            v-if="generation === 'POINTS_RANDOM' " 
+            class="message is-info">
+            <div class="message-body">
+              Total: {{ generators['POINTS_RANDOM'].values.reduce( (a,acum ) => a+acum ,0) }}
+            </div>
+          </div>
+        </div>
+        <div 
+          v-else 
+          class="card-content has-background-white ">
+          <div class="field">
+            <label class="label">Cantidad de puntos.</label>
+            <div class="control ">
+              <input 
+                v-model.number="generators['POINTS'].values[0]" 
+                type="number" 
+                class="input is-small" 
+                min="1"
+                placeholder="???">
+            </div>
+          </div>
+        </div>
+        <footer class="card-footer ">
+          <a 
+            class="card-footer-item button is-link is-radiusless" 
+            @click=" generation = '' ">
+            Escoger Otro método
+          </a>
+          <a 
+            class="card-footer-item button is-success is-radiusless " 
+            @click="generationIsSelected">
+            Continuar.
+          </a>
+        </footer>
+      </div>
     </div>
+
+    <pre>
+{{ characteristicsPoints }}
+    </pre>
+
+  </div>
 </template>
 
 <script>
 import GenerationCards from "./GenerationCards";
 import RandomValues from "./RandomValues";
 export default {
-  name: "characteristics-form",
+  name: "CharacteristicsForm",
+  components: { GenerationCards, RandomValues },
   data: function() {
     return {
       generationCards: [
@@ -158,7 +185,6 @@ export default {
       return this.$store.state.newCharacter.basicData.name;
     }
   },
-  components: { GenerationCards, RandomValues },
   methods: {
     setGenetationType(type) {
       this.generation = type;

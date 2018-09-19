@@ -5,7 +5,7 @@
       <div class="hero-body">
         <div class="container has-text-centered">
           <h1 class="title is-1">Creación de personajes</h1>
-          <p class="subtitle"></p>
+          <p class="subtitle"/>
         </div>
       </div>
     </div>
@@ -14,42 +14,47 @@
       <div class="container">
 
         <progress-meter-step
-            :steps="steps"
-            :active="currentStep"></progress-meter-step>
+          :steps="steps"
+          :active="currentStep"/>
 
         <div class="content has-text-justified">
-          <h2 class="title is-4">{{steps[currentStep].title}}</h2>
+          <h2 class="title is-4">{{ steps[currentStep].title }}</h2>
 
-          <p class="is-size-6"
-             v-if="currentStep === 0">Con esto {{ nameToShow }} podrá identificarse dentro del mundo.
+          <p 
+            v-if="currentStep === 0"
+            class="is-size-6">Con esto {{ nameToShow }} podrá identificarse dentro del mundo.
           </p>
 
-          <p class="is-size-6"
-             v-if="currentStep === 1">
+          <p 
+            v-if="currentStep === 1"
+            class="is-size-6">
             Después servirán para determinar el valor de cada una de las carácteristicas que va a tener {{ nameToShow
             }}.
             Existen diversas formas de generar generar estos puntos y debes elegir una de ellas.
           </p>
         </div>
 
-        <form-basic-data v-model="character.basicData"
-                         @finish="nexStep"
-                         v-if="currentStep === 0"></form-basic-data>
+        <form-basic-data 
+          v-if="currentStep === 0"
+          v-model="character.basicData"
+          @finish="nexStep"/>
 
-        <form-points-generation v-model="character.points"
-                                @finish="nexStep"
-                                v-if="currentStep === 1"></form-points-generation>
+        <form-points-generation 
+          v-if="currentStep === 1"
+          v-model="character.points"
+          @finish="nexStep"/>
 
-        <form-characteristics v-model="character.characteristics"
-                              @finish="nexStep"
-                              v-if="currentStep === 2" ></form-characteristics>
+        <!-- <form-characteristics 
+          v-if="currentStep === 2"
+          v-model="character.characteristics"
+          @finish="nexStep" /> -->
 
         <hr>
         <hr>
         <hr>
         <hr>
 
-        <characteristics-form ></characteristics-form>
+        <characteristics-form />
 
       </div>
     </section>
@@ -112,16 +117,16 @@ export default {
       }
     };
   },
-  methods: {
-    nexStep() {
-      this.currentStep++;
-    }
-  },
   computed: {
     nameToShow() {
       return this.character.basicData.name === ""
         ? "un personaje"
         : this.character.basicData.name;
+    }
+  },
+  methods: {
+    nexStep() {
+      this.currentStep++;
     }
   }
 };
