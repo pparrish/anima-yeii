@@ -2,7 +2,11 @@
   <div class="card">
     <div class="card-header">
       <div class="card-header-title">
-        <p>titulo <span class="tag">tag</span></p>
+        <p>{{ title }} 
+          <span
+            v-for="(tag, index) in tags"
+            :key="index"
+            class="tag">{{ tag }}</span></p>
       </div>
       <a class="card-header-icon">
         <span class="icon">
@@ -11,16 +15,40 @@
       </a>
     </div>
     <div class="card-content has-justified-text">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore suscipit consequuntur voluptate? Porro eum deserunt, facilis possimus praesentium, ex tempora nemo voluptatem quo recusandae ipsa nulla corporis, a alias sed?</p>
+      <p>{{ content }}</p>
     </div>
     <div class="card-footer">
-      <a class="card-footer-item button is-link is-radiusless">SelectorText</a>
+      <a 
+        class="card-footer-item button is-link is-radiusless"
+        @click="$emmit('selected') ">{{ buttonText }}</a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AccordeonSelectorCard"
+  name: "AccordeonSelectorCard",
+  props: {
+    title: {
+      type: String,
+      default: () => "No title",
+      required: false
+    },
+    tags: {
+      type: Array,
+      default: () => [],
+      required: false
+    },
+    content: {
+      type: String,
+      default: () => "No content",
+      required: false
+    },
+    buttonText: {
+      type: String,
+      default: () => "No text",
+      required: false
+    }
+  }
 };
 </script>
