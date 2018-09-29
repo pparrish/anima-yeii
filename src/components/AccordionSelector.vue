@@ -9,7 +9,9 @@
       :content="selector.content"
       :button-text="selector.buttonText"
       :is-open="selectorOpenend === selector.id"
-      @toggled="toggleCards(selector.id)" />
+      :is-selected="selectCard === selector.id"
+      @toggled="toggleCards(selector.id)"
+      @selected="selectedCard(selector.id)" />
   </div>
 </template>
 
@@ -21,12 +23,19 @@ export default {
   components: { AccordeonSelectorCard },
   props: {
     selectors: {
-      type: Object,
+      type: Array,
       required: false,
       default: () => {
         return [
           {
             id: 1,
+            title: "Prueba",
+            tags: ["prueba", "pruebita"],
+            content: "Esto es una prueba yeahh",
+            buttonText: "Clica la prueba"
+          },
+          {
+            id: 2,
             title: "Prueba",
             tags: ["prueba", "pruebita"],
             content: "Esto es una prueba yeahh",
@@ -38,12 +47,18 @@ export default {
   },
   data() {
     return {
-      selectorOpenend: undefined
+      selectorOpenend: undefined,
+      selectCard: undefined
     };
   },
   methods: {
     toggleCards(id) {
       this.selectorOpenend = this.selectorOpenend !== id ? id : undefined;
+    },
+    selectedCard(id) {
+      this.selectCard = id;
+      this.toggleCards(id); //this close all cards
+      this.$emit("input", this.selectCard);
     }
   }
 };
