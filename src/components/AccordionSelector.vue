@@ -1,12 +1,11 @@
 <template>
   <div>
-    <p>AccordionSelector</p>
     <accordeon-selector-card 
       v-for="selector in selectors"
       :key="selector.id"
       :title="selector.title"
       :tags="selector.tags"
-      :content="selector.content"
+      :content="selector.description"
       :button-text="selector.buttonText"
       :is-open="selectorOpenend === selector.id"
       :is-selected="selectCard === selector.id"
@@ -21,34 +20,25 @@ import AccordeonSelectorCard from "@/components/AccordionSelectorCard";
 export default {
   name: "AccordeonSelector",
   components: { AccordeonSelectorCard },
+  model: {
+    prop: "selectCard",
+    event: "input"
+  },
   props: {
     selectors: {
       type: Array,
       required: false,
-      default: () => {
-        return [
-          {
-            id: 1,
-            title: "Prueba",
-            tags: ["prueba", "pruebita"],
-            content: "Esto es una prueba yeahh",
-            buttonText: "Clica la prueba"
-          },
-          {
-            id: 2,
-            title: "Prueba",
-            tags: ["prueba", "pruebita"],
-            content: "Esto es una prueba yeahh",
-            buttonText: "Clica la prueba"
-          }
-        ];
-      }
+      default: () => []
+    },
+    selectCard: {
+      type: String,
+      required: false,
+      default: () => undefined
     }
   },
   data() {
     return {
-      selectorOpenend: undefined,
-      selectCard: undefined
+      selectorOpenend: undefined
     };
   },
   methods: {
@@ -56,9 +46,8 @@ export default {
       this.selectorOpenend = this.selectorOpenend !== id ? id : undefined;
     },
     selectedCard(id) {
-      this.selectCard = id;
       this.toggleCards(id); //this close all cards
-      this.$emit("input", this.selectCard);
+      this.$emit("input", id);
     }
   }
 };
