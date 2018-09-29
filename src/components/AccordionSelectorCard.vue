@@ -2,22 +2,28 @@
   <div class="card">
     <div class="card-header">
       <div class="card-header-title">
-        <p>{{ title }} 
+        <p>{{ title }}
           <span
             v-for="(tag, index) in tags"
             :key="index"
             class="tag">{{ tag }}</span></p>
       </div>
-      <a class="card-header-icon">
+      <a 
+        class="card-header-icon"
+        @click="handleToggle">
         <span class="icon">
           <i class="fas fa-angle-down"/>
         </span>
       </a>
     </div>
-    <div class="card-content has-justified-text">
+    <div 
+      v-show="isOpen"
+      class="card-content has-justified-text">
       <p>{{ content }}</p>
     </div>
-    <div class="card-footer">
+    <div
+      v-show="isOpen"
+      class="card-footer">
       <button 
         class="card-footer-item button is-link is-radiusless"
         @click="handleClick">{{ buttonText }}</button>
@@ -48,11 +54,19 @@ export default {
       type: String,
       default: () => "No text",
       required: false
+    },
+    isOpen: {
+      type: Boolean,
+      required: true,
+      default: () => false
     }
   },
   methods: {
     handleClick() {
       this.$emit("selected");
+    },
+    handleToggle() {
+      this.$emit("toggled");
     }
   }
 };
