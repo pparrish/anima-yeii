@@ -24,9 +24,9 @@
     <div
       v-show="isOpen"
       class="card-footer">
-      <button 
+      <a 
         class="card-footer-item button is-link is-radiusless"
-        @click="handleClick">{{ buttonText }}</button>
+        @click="handleClick">{{ buttonText }}</a>
     </div>
   </div>
 </template>
