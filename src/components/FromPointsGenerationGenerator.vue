@@ -10,11 +10,19 @@ export default {
       type: String,
       default: () => "NaNhumano"
     },
-    type: {
+    method: {
       type: String,
       required: true,
-      default: () => "ADVANTAJE"
+      default: () => "ADVANTAGE"
     }
+  },
+  watch: {
+    method(newMethod) {
+      this.$emit("values-generated", this[newMethod]());
+    }
+  },
+  created() {
+    this.$emit("values-generated", this[this.method]());
   },
   methods: {
     JSF(seed) {
@@ -31,7 +39,7 @@ export default {
       for (var i = 0; i < 20; i++) jsf();
       return jsf;
     },
-    ADVANTAJE() {
+    ADVANTAGE() {
       let random = this.JSF(this.seed);
       let values = new Array(8)
         .fill()
@@ -40,6 +48,22 @@ export default {
       let minValueIndex = values.indexOf(minValue);
       values[minValueIndex] = 9;
       return values;
+    },
+    RISK() {
+      let random = this.JSF(this.seed);
+      return new Array(8).fill().map(() => {
+        let firstDice = Math.floor(random() * 10) + 1;
+        let secondDice = Math.floor(random() * 10) + 1;
+        return Math.max(firstDice, secondDice);
+      });
+    },
+    RANDOM() {
+      let random = this.JSF(this.seed);
+      return new Array(8).fill().map(() => Math.floor(random() * 10) + 1);
+    },
+    POINTS_RANDOM() {
+      let random = this.JSF(this.seed);
+      return new Array(7).fill().map(() => Math.floor(random() * 10) + 1);
     }
   }
 };

@@ -42,6 +42,7 @@
         <form-points-generation 
           v-if="currentStep === 1"
           v-model="character.points"
+          :seed="seed"
           @finish="nexStep"/>
 
         <!-- <form-characteristics 
@@ -122,6 +123,15 @@ export default {
       return this.character.basicData.name === ""
         ? "un personaje"
         : this.character.basicData.name;
+    },
+    seed() {
+      return (
+        "" +
+        this.character.basicData.name +
+        this.character.basicData.sex +
+        this.character.basicData.age +
+        this.character.basicData.race
+      );
     }
   },
   methods: {
