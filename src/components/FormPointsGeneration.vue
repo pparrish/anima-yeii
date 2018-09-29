@@ -4,7 +4,7 @@
     <form-points-generation-selector
       v-model="selectedGenerationType"/>
     <from-points-generation-generator
-      v-if="selectedGenerationType !== 'POINTS'"
+      v-if="selectedGenerationType && selectedGenerationType !== 'POINTS'"
       :seed="seed"
       :method="selectedGenerationType"
       @values-generated="handleValuesGenerated"/>
@@ -43,14 +43,11 @@ export default {
   watch: {
     value() {
       this.selectedGenerationType = this.value.selectedType;
-    },
-    selectedType(type) {
-      this.$emit("input", type);
     }
   },
   methods: {
     handleValuesGenerated(values) {
-      this.test = values;
+      this.valuesGenerated = values;
     }
   }
 };
