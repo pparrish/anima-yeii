@@ -1,12 +1,15 @@
 <template>
   <div class="card">
-    <div class="card-header">
-      <div class="card-header-title">
+    <div
+      :class="{'has-background-success': isSelected}"
+      class="card-header">
+      <div
+        :class="{'has-text-white': isSelected}" 
+        class="card-header-title ">
         <p>{{ title }}
           <span
             v-for="(tag, index) in tags"
-            :key="index"
-            class="tag">{{ tag }}</span></p>
+            :key="index">&nbsp;<span class="tag">{{ tag }}</span></span></p>
       </div>
       <a 
         class="card-header-icon"
@@ -56,6 +59,11 @@ export default {
       required: false
     },
     isOpen: {
+      type: Boolean,
+      required: true,
+      default: () => false
+    },
+    isSelected: {
       type: Boolean,
       required: true,
       default: () => false
