@@ -18,9 +18,9 @@
       <p>{{ content }}</p>
     </div>
     <div class="card-footer">
-      <a 
+      <button 
         class="card-footer-item button is-link is-radiusless"
-        @click="$emmit('selected') ">{{ buttonText }}</a>
+        @click="handleClick">{{ buttonText }}</button>
     </div>
   </div>
 </template>
@@ -48,6 +48,11 @@ export default {
       type: String,
       default: () => "No text",
       required: false
+    }
+  },
+  methods: {
+    handleClick() {
+      this.$emit("selected");
     }
   }
 };
