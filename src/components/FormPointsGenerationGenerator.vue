@@ -22,12 +22,15 @@ export default {
     }
   },
   watch: {
-    method(newMethod) {
-      this.$emit("values-generated", this[newMethod]());
+    method: {
+      handler: function(newMethod) {
+        this.$emit("input", this[newMethod]());
+      },
+      inmediate: true
     }
   },
   created() {
-    this.$emit("values-generated", this[this.method]());
+    this.$emit("input", this[this.method]());
   },
   methods: {
     JSF(seed) {

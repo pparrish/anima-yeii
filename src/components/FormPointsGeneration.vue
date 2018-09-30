@@ -2,32 +2,36 @@
   <div>
 
     <form-points-generation-selector
-      v-model="selectedGenerationType"
-      class="box is-paddingless"/>
+      :value="value.type"
+      class="box is-paddingless"
+      @input="handleSelection"/>
 
     <form-points-generation-generator
-      v-if="selectedGenerationType && selectedGenerationType !== 'POINTS'"
-      :seed="seed + selectedGenerationType"
-      :method="selectedGenerationType"
-      @values-generated="handleValuesGenerated"/>
+      v-if="value.type && value.type !== 'POINTS'"
+      :seed="seed + value.type"
+      :method="value.type"
+      :value="value.values"
+      @input="handleValuesGenerated"/>
 
     <div
-      v-if="selectedGenerationType && selectedGenerationType !== 'POINTS'"
+      v-if="value.type && value.type !== 'POINTS'"
       class="box">
 
       <group-dices
-        :result="valuesGenerated"
+        :result="value.values"
         label="D10"/>
 
-      <p><strong>Total:</strong> {{ totalPoints }}</p>
+      <p><strong>Total:</strong> {{ value.total }}</p>
 
     </div>
 
     <div 
-      v-if="selectedGenerationType === 'POINTS'"
+      v-if="value.type === 'POINTS'"
       class="box">
 
-      <form-points-generation-input-points v-model.number="totalPoints" />
+      <form-points-generation-input-points
+        :value="value.total"
+        @input="handlePoints" />
 
     </div>
 
@@ -81,35 +85,29 @@ export default {
       default: () => "NaNhumano"
     }
   },
-  data() {
-    return {
-      selectedGenerationType: undefined,
-      valuesGenerated: [],
-      totalPoints: 60
-    };
-  },
-  watch: {
-    value() {
-      this.selectedGenerationType = this.value.type;
-      this.selectedGenerationType = this.value.selectedType;
-      this.totalPoints = this.value.total;
-    },
-    selectedGenerationType() {
-      this.valuesGenerated = [];
-      this.totalPoints = this.selectedGenerationType === "POINTS" ? 60 : 0;
-    }
-  },
   methods: {
+    handleSelection(id) {
+      this.$emit("input", {
+        type: id,
+        values: [],
+        total: id === "POINTS" ? 60 : 0
+      });
+    },
+    handlePoints(value) {
+      this.$emit("input", {
+        type: this.value.type,
+        values: [],
+        total: value
+      });
+    },
     handleValuesGenerated(values) {
-      this.valuesGenerated = values;
-      this.totalPoints = values.reduce((prev, curr) => prev + curr, 0);
+      this.$emit("input", {
+        type: this.value.type,
+        values: values,
+        total: values.reduce((prev, curr) => prev + curr, 0)
+      });
     },
     handleFinish() {
-      this.$emit("input", {
-        types: this.selectedGenerationType,
-        values: this.valuesGenerated,
-        total: this.totalPoints
-      });
       this.$emit("finish");
     }
   }

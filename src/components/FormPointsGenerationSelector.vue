@@ -2,7 +2,8 @@
   <div>
     <accordion-selector 
       :selectors="generationCards"
-      v-model="selectedCard"/>
+      :select-card="value"
+      @input="handleSelection"/>
   </div>
 </template>
 
@@ -62,16 +63,12 @@ export default {
           description:
             "Eliges la cantidad de puntos a repartir, por defecto son 60."
         }
-      ],
-      selectedCard: undefined
+      ]
     };
   },
-  watch: {
-    selectedCard(selected) {
-      this.$emit("input", selected);
-    },
-    value() {
-      this.selectedCard = this.value;
+  methods: {
+    handleSelection(value) {
+      this.$emit("input", value);
     }
   }
 };
