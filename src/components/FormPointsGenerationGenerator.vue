@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "FromPointGenerationGenerator",
+  name: "FormPointsGenerationGenerator",
   props: {
     seed: {
       type: String,
@@ -14,6 +14,11 @@ export default {
       type: String,
       required: true,
       default: () => "ADVANTAGE"
+    }
+  },
+  computed: {
+    seedToInt() {
+      return this.seed.split("").reduce((a, b) => a + b.charCodeAt(), 0);
     }
   },
   watch: {
@@ -40,7 +45,7 @@ export default {
       return jsf;
     },
     ADVANTAGE() {
-      let random = this.JSF(this.seed);
+      let random = this.JSF(this.seedToInt);
       let values = new Array(8)
         .fill()
         .map(() => Math.floor(random() * (11 - 4)) + 4);
@@ -50,7 +55,7 @@ export default {
       return values;
     },
     RISK() {
-      let random = this.JSF(this.seed);
+      let random = this.JSF(this.seedToInt);
       return new Array(8).fill().map(() => {
         let firstDice = Math.floor(random() * 10) + 1;
         let secondDice = Math.floor(random() * 10) + 1;
@@ -58,11 +63,11 @@ export default {
       });
     },
     RANDOM() {
-      let random = this.JSF(this.seed);
+      let random = this.JSF(this.seedToInt);
       return new Array(8).fill().map(() => Math.floor(random() * 10) + 1);
     },
     POINTS_RANDOM() {
-      let random = this.JSF(this.seed);
+      let random = this.JSF(this.seedToInt);
       return new Array(7).fill().map(() => Math.floor(random() * 10) + 1);
     }
   }
