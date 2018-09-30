@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "RandomValues",
+  name: "GroupDices",
   props: {
     result: {
       type: Array,
