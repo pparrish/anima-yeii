@@ -41,21 +41,15 @@
 
         <form-points-generation 
           v-if="currentStep === 1"
-          v-model="character.points"
+          v-model="character.initialPoints"
           :seed="seed"
+          @back="prevStep"
           @finish="nexStep"/>
 
-        <!-- <form-characteristics 
+          <!-- <form-characteristics 
           v-if="currentStep === 2"
           v-model="character.characteristics"
           @finish="nexStep" /> -->
-
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-
-        <characteristics-form />
 
       </div>
     </section>
@@ -66,7 +60,6 @@
 <script>
 import ProgressMeterStep from "../components/ProgressMeterStep";
 import FormBasicData from "../components/FormBasicData";
-import CharacteristicsForm from "../components/CharacteristicsForm";
 import FormCharacteristics from "../components/FormCharacteristics";
 import FormPointsGeneration from "../components/FormPointsGeneration";
 
@@ -74,14 +67,13 @@ export default {
   name: "NewCharacter",
   components: {
     FormCharacteristics,
-    CharacteristicsForm,
     FormBasicData,
     ProgressMeterStep,
     FormPointsGeneration
   },
   data() {
     return {
-      currentStep: 1,
+      currentStep: 0,
       steps: [
         {
           title: "Datos básicos"
@@ -109,12 +101,12 @@ export default {
           might: 0,
           will: 0,
           perception: 0
+        },
+        initialPoints: {
+          type: "",
+          values: [],
+          total: 0
         }
-      },
-      points: {
-        type: "",
-        values: [],
-        total: 0
       }
     };
   },
@@ -137,6 +129,9 @@ export default {
   methods: {
     nexStep() {
       this.currentStep++;
+    },
+    prevStep() {
+      this.currentStep--;
     }
   }
 };
