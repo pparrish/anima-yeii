@@ -46,9 +46,9 @@
           @back="prevStep"
           @finish="nexStep"/>
 
-          <!-- <form-characteristics 
+          <!-- <form-characteristics
+          :characteristics="character.characteristics"
           v-if="currentStep === 2"
-          v-model="character.characteristics"
           @finish="nexStep" /> -->
 
       </div>
