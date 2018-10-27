@@ -39,10 +39,23 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      localPoints: undefined,
+      localCharacteristics: undefined
+    };
+  },
   computed: {
     pointsRemaind() {
-      return this.points.total;
+      return this.localPoints.total;
+    },
+    sortedPoints() {
+      return this.localPoints.values.map(a => a).sort((a, b) => b - a);
     }
+  },
+  created() {
+    this.localPoints = this.points;
+    this.localCharacteristics = this.characteristics;
   }
 };
 </script>
